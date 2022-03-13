@@ -31,7 +31,7 @@ public class ShoppingCart implements IShoppingCart {
         for (int i = 0; i < Array.getLength(keys) ; i++) {
             Integer price = pricer.getPrice((String)keys[i]) * contents.get(keys[i]);
             Float priceFloat = new Float(new Float(price) / 100);
-            String priceString = String.format("€%.2f", priceFloat);
+            String priceString = String.format(Locale.ENGLISH, "€%.2f", priceFloat);
 
             System.out.println(keys[i] + " - " + contents.get(keys[i]) + " - " + priceString);
         }

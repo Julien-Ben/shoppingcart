@@ -3,3 +3,4 @@ build
 .gradle
 __pycache__
 .vscode
+java/gradle*

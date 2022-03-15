@@ -65,7 +65,7 @@ However it leads to the need of writing twice the print logic.
 I created an ENUM to represent different formatting options and enable to add more in the future
 I also had to adapt the test cases,
 
-##Writing this report (15 min)
+##Writing this report (30 min)
 
 
 

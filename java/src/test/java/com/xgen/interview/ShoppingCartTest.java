@@ -32,20 +32,34 @@ public class ShoppingCartTest {
     @Test
     public void canAddDifferentItems() {
         ShoppingCart sc = new ShoppingCart(new Pricer());
-
         sc.addItem("apple", 2);
         sc.addItem("banana", 1);
-
         String content = buildReceiptContent(new String[]{"apple", "banana"}, new float[]{2.0f, 2.0f}, new int[]{2, 1});
-
         assertReceiptHasExpectedContent(sc, content);
     }
 
-        @Test
+    @Test
     public void doesntExplodeOnMysteryItem() {
         ShoppingCart sc = new ShoppingCart(new Pricer());
         sc.addItem("crisps", 2);
         String content = buildReceiptContent(new String[]{"crisps"}, new float[]{0.0f}, new int[]{2});
+        assertReceiptHasExpectedContent(sc, content);
+    }
+
+    @Test
+    public void orderingIsPreservedWhenAddingAnItemMultipleTimes() {
+        ShoppingCart sc = new ShoppingCart(new Pricer());
+        sc.addItem("apple", 2);
+        sc.addItem("banana", 1);
+        sc.addItem("potatoes", 1);
+        sc.addItem("banana", 1);
+        sc.addItem("crisps", 12);
+        sc.addItem("banana", 1);
+        String content = buildReceiptContent(
+                new String[]{"apple", "banana", "potatoes", "crisps"},
+                new float[]{2.0f, 6.0f, 0f, 0f},
+                new int[]{2, 3, 1, 12}
+        );
         assertReceiptHasExpectedContent(sc, content);
     }
 
@@ -58,14 +72,16 @@ public class ShoppingCartTest {
 
     /**
      * Helper method for unit tests, to build the content of the receipt from three simple data structures.
-     * The two arrays must have the same length.
+     * The arrays must have the same length.
      * @param items list of item names
      * @param prices list of item prices
      * @param quantities list of item quantities
      * @return the String corresponding to the receipt
      */
     private String buildReceiptContent(String[] items, float[] prices, int[] quantities) {
+        //The arrays must have the same length
         assertEquals(items.length, prices.length);
+        assertEquals(items.length, quantities.length);
         StringBuilder sb = new StringBuilder();
         float totalPrice = 0f;
         for (int i = 0; i < items.length; i++) {

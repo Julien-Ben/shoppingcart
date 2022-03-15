@@ -1,4 +1,4 @@
-#Work sessions
+# Work sessions
 
 I did this project in three work session :
 - 1 hour to clone, compile, repair gradle and tests, read the code and think how I will approach the challenge.
@@ -7,7 +7,7 @@ I did this project in three work session :
 
 # Steps followed, time tracking and thought process
 
-##Getting started with the project (1h)
+## Getting started with the project (1h)
 
 I started by cloning the directory and exploring the project without touching a line of code. I took notes on the approaches I was considering and the tasks to be performed.
 
@@ -16,7 +16,7 @@ I also added a formatting option (decimal separator "." vs ",") to a method so t
 
 All this took me an hour in total, and I almost only had to execute what I had planned to do next.
 
-##Code improvements (20 min)
+## Code improvements (20 min)
 ### Refactoring addItem (less line of code, more readable) (5 min)
 Using `getOrDefault` I managed to make the method much more concise but still readable.
 ### Some improvements of the class (5 min)
@@ -24,16 +24,16 @@ Using `getOrDefault` I managed to make the method much more concise but still re
 - Research on a map keeping the insertion ordering, found about `LinkedHashMap`.
 Other possible approach would have been to use a `TreeMap` and define ordering myself. But `TreeMap` runs in `O(log(n))` for most operations whereas `LinkedHashMap` runs in `O(1)`.
 
-###Improving printReceipt (10 min)
+### Improving printReceipt (10 min)
 Less repetition, more readable (stop repeating `contents.get(keys[i])` and `keys[i]`), got rid of Float and Integer, used primitive types instead.
 
 
 After refactoring, I verified that the code still passed unit tests.
 
-##Adding "total" to the receipt (5 min)
+## Adding "total" to the receipt (5 min)
 Just a few changes to `printReceipt`.
 
-##Refactoring of unit tests (45 min)
+## Refactoring of unit tests (45 min)
 This was definitely the most challenging part because there was no "perfect" solution, and I'm still not 100% sure that I made the best choice.
 
 Thought process :
@@ -61,11 +61,11 @@ The big advantage is that each test can now focus on the inner working of the cl
 It offers an easy interface to quickly write new tests (just know what you expect from the receipt and write it as three arrays).
 However, it leads to the need of writing twice the print logic.
 
-##Supporting different formatting options (20 min)
+## Supporting different formatting options (20 min)
 I created an ENUM to represent different formatting options and enable to add more in the future
 I also had to adapt the test cases,
 
-##Writing this report (30 min)
+## Writing this report (30 min)
 
 # Creative extensions
 I ran out of time before being able to develop an extension.

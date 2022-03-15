@@ -22,14 +22,18 @@ public class ShoppingCart implements IShoppingCart {
     }
 
     public void printReceipt() {
-        Object[] keys = contents.keySet().toArray();
-
-        for (int i = 0; i < Array.getLength(keys) ; i++) {
-            Integer price = pricer.getPrice((String)keys[i]) * contents.get(keys[i]);
-            Float priceFloat = new Float(new Float(price) / 100);
+        /*
+        Although the iteration is done over a set, ordering is guaranteed according to this post.
+        https://stackoverflow.com/questions/2923856/is-the-order-guaranteed-for-the-return-of-keys-and-values-from-a-linkedhashmap-o/2924143#2924143
+         */
+        for (Map.Entry<String, Integer> entry : contents.entrySet()) {
+            String itemType = entry.getKey();
+            int quantity = entry.getValue();
+            int price = pricer.getPrice(itemType) * quantity;
+            float priceFloat = (float) price / 100;
+            totalPrice += priceFloat;
             String priceString = String.format(Locale.ENGLISH, "€%.2f", priceFloat);
-
-            System.out.println(keys[i] + " - " + contents.get(keys[i]) + " - " + priceString);
+            System.out.println(itemType + " - " + quantity + " - " + priceString);
         }
     }
 }

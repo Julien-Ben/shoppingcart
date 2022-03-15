@@ -2,6 +2,8 @@ package com.xgen.interview;
 
 import java.util.*;
 
+import static com.xgen.interview.ShoppingCart.PrintModes.*;
+
 /**
  * This is the current implementation of ShoppingCart.
  * Please write a replacement
@@ -11,6 +13,15 @@ public class ShoppingCart implements IShoppingCart {
     private final LinkedHashMap<String, Integer> contents = new LinkedHashMap<>();
     private final Pricer pricer;
 
+    /**
+     * Represents the different mode of printing the receipt, for example, showing price first.
+     * When no mode is specified, "DEFAULT" should be used.
+     */
+    public enum PrintModes {
+        DEFAULT,
+        REVERSE_PRICE
+    }
+
     public ShoppingCart(Pricer pricer) {
         this.pricer = pricer;
     }
@@ -19,7 +30,7 @@ public class ShoppingCart implements IShoppingCart {
         contents.put(itemType, contents.getOrDefault(itemType, 0) + number);
     }
 
-    public void printReceipt() {
+    public void printReceipt(PrintModes printMode) {
         /*
         Although the iteration is done over a set, ordering is guaranteed according to this post.
         https://stackoverflow.com/questions/2923856/is-the-order-guaranteed-for-the-return-of-keys-and-values-from-a-linkedhashmap-o/2924143#2924143
@@ -32,10 +43,20 @@ public class ShoppingCart implements IShoppingCart {
             float priceFloat = (float) price / 100;
             totalPrice += priceFloat;
             String priceString = String.format(Locale.ENGLISH, "€%.2f", priceFloat);
-            System.out.println(itemType + " - " + quantity + " - " + priceString);
+            switch (printMode) {
+                case REVERSE_PRICE:
+                    System.out.println(priceString + " - " + itemType + " - " + quantity + " - ");
+                    break;
+                case DEFAULT:
+                    System.out.println(itemType + " - " + quantity + " - " + priceString);
+                    break;
+            }
         }
-
         String totalPriceString = String.format(Locale.ENGLISH, "€%.2f", totalPrice);
         System.out.println("Total" + " - " + totalPriceString);
+    }
+
+    public void printReceipt() {
+        printReceipt(DEFAULT);
     }
 }

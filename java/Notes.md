@@ -3,7 +3,7 @@
 I did this project in three work session :
 - 1 hour to clone, compile, repair gradle and tests, read the code and think how I will approach the challenge.
 - 1 hour 10 minutes for implementing most of the features, refactor the code and the unit tests
-- 35 minutes to add the printing format feature (reverse item and price) + writing this report, adding new tests and make a creative extension.
+- 50 minutes to add the printing format feature (reverse item and price) + writing this report, adding new tests and make a creative extension.
 
 # Steps followed, time tracking and thought process
 
@@ -16,7 +16,7 @@ I also added a formatting option (decimal separator "." vs ",") to a method so t
 
 All this took me an hour in total, and I almost only had to execute what I had planned to do next.
 
-##Code improvement (20 min)
+##Code improvements (20 min)
 ### Refactoring addItem (less line of code, more readable) (5 min)
 Using `getOrDefault` I managed to make the method much more concise but still readable.
 ### Some improvements of the class (5 min)
@@ -39,7 +39,7 @@ This was definitely the most challenging part because there was no "perfect" sol
 Thought process :
 
 When writing unit tests, the developer needed to rewrite the exact expected String for each test.
-That is clearly a problem because it leads to a lot of duplication, and one change in the class `ShoppingCart` creates the need to modify every tests.
+That is clearly a problem because it leads to a lot of duplication, and one change in the class `ShoppingCart` creates the need to modify each test.
 
 Solving this problem isn't simple. The first thing that came to my mind was to directly perform checks on the content of the data structure in `ShoppingCart`.
 This would have enabled to decouple a lot the formatting of the receipt from the tests.
@@ -53,19 +53,22 @@ Actions :
 I began by refactoring the tests a bit, because many lines were repeated for capturing the output stream and testing its content.
 So I created the helper method `assertReceiptHasExpectedContent`.
 
-Then, I choose to mimic a bit the behavior of the ShoppingCart class by creating a helper private method in the test class to build the content of the receipt.
+Then, I choose to mimic a bit the behavior of the `ShoppingCart` class by creating a helper private method in the test class to build the content of the receipt.
 It takes three arguments (three primitives array of Strings, floats and ints) which correspond to the expected content of the lines of the receipt (item name, price and quantity).
 The methods rebuild the expected content and returns it as a String. 
 The big advantage is that each test can now focus on the inner working of the class. If the receipt format changes, a few changes to this helper method avoid rewriting everything.
 
 It offers an easy interface to quickly write new tests (just know what you expect from the receipt and write it as three arrays).
-However it leads to the need of writing twice the print logic.
+However, it leads to the need of writing twice the print logic.
 
 ##Supporting different formatting options (20 min)
 I created an ENUM to represent different formatting options and enable to add more in the future
 I also had to adapt the test cases,
 
 ##Writing this report (30 min)
+
+# Creative extensions
+I ran out of time before being able to develop an extension.
 
 
 

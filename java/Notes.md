@@ -1,9 +1,9 @@
 # Work sessions
 
 I did this project in three work session :
-- 1 hour to clone, compile, repair gradle and tests, read the code and think how I will approach the challenge.
-- 1 hour 10 minutes for implementing most of the features, refactor the code and the unit tests
-- 50 minutes to add the printing format feature (reverse item and price) + writing this report, adding new tests and make a creative extension.
+- 1 hour for cloning, compiling, repairing gradle and tests, reading the code and thinking how I will approach the challenge.
+- 1 hour 10 minutes for implementing most of the features, refactoring the code and the unit tests
+- 50 minutes for adding the printing format feature (reverse item and price) + writing this report, adding new tests and making a creative extension.
 
 # Steps followed, time tracking and thought process
 

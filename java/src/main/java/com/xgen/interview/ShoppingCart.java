@@ -9,20 +9,16 @@ import java.util.*;
  * Please write a replacement
  */
 public class ShoppingCart implements IShoppingCart {
-    HashMap<String, Integer> contents = new HashMap<>();
-    Pricer pricer;
+    //Using LinkedHashMap to preserve insertion order
+    private final LinkedHashMap<String, Integer> contents = new LinkedHashMap<>();
+    private final Pricer pricer;
 
     public ShoppingCart(Pricer pricer) {
         this.pricer = pricer;
     }
 
     public void addItem(String itemType, int number) {
-        if (!contents.containsKey(itemType)) {
-            contents.put(itemType, number);
-        } else {
-            int existing = contents.get(itemType);
-            contents.put(itemType, existing + number);
-        }
+        contents.put(itemType, contents.getOrDefault(itemType, 0) + number);
     }
 
     public void printReceipt() {

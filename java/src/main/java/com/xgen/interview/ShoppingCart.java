@@ -1,8 +1,6 @@
 package com.xgen.interview;
 
-import java.lang.reflect.Array;
 import java.util.*;
-
 
 /**
  * This is the current implementation of ShoppingCart.
@@ -26,6 +24,7 @@ public class ShoppingCart implements IShoppingCart {
         Although the iteration is done over a set, ordering is guaranteed according to this post.
         https://stackoverflow.com/questions/2923856/is-the-order-guaranteed-for-the-return-of-keys-and-values-from-a-linkedhashmap-o/2924143#2924143
          */
+        float totalPrice = 0f;
         for (Map.Entry<String, Integer> entry : contents.entrySet()) {
             String itemType = entry.getKey();
             int quantity = entry.getValue();
@@ -35,5 +34,8 @@ public class ShoppingCart implements IShoppingCart {
             String priceString = String.format(Locale.ENGLISH, "€%.2f", priceFloat);
             System.out.println(itemType + " - " + quantity + " - " + priceString);
         }
+
+        String totalPriceString = String.format(Locale.ENGLISH, "€%.2f", totalPrice);
+        System.out.println("Total" + " - " + totalPriceString);
     }
 }
